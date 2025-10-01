@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'minis3.cosorio.dev',
-        port: '9000', // Puerto API de MinIO (HTTP)
+        // No especificar puerto para HTTPS (usa 443 por defecto)
         pathname: '/nextjs-enterprise/**',
       },
     ],

@@ -1,10 +1,10 @@
 import { Client } from 'minio';
 
-// Configuración para Service Account - Puerto 9000 HTTP con path-style
+// Configuración para MinIO con Dokploy (HTTPS sin puerto explícito)
 export const minioClient = new Client({
   endPoint: process.env.MINIO_ENDPOINT || 'localhost',
-  port: 9000, // Puerto API directo de MinIO
-  useSSL: false, // Dokploy no tiene SSL en puerto 9000
+  // No especificar puerto para HTTPS (usa 443 por defecto)
+  useSSL: process.env.MINIO_USE_SSL === 'true',
   accessKey: process.env.MINIO_ACCESS_KEY || 'minioadmin',
   secretKey: process.env.MINIO_SECRET_KEY || 'minioadmin',
   region: 'us-east-1',
@@ -98,7 +98,7 @@ export async function listObjects() {
 
 // Función para obtener URL pública (puerto 9000 HTTP)
 export function getPublicUrl(objectName: string): string {
-  return `http://${process.env.MINIO_ENDPOINT}:9000/${BUCKET_NAME}/${objectName}`;
+  return `https://${process.env.MINIO_ENDPOINT}/${BUCKET_NAME}/${objectName}`;
 }
 
 // Función para obtener URL pre-firmada (alternativa si puerto 9000 no está expuesto)

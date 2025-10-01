@@ -30,8 +30,9 @@ export default function ImageGallery({ className = '' }: ImageGalleryProps) {
     try {
       setIsLoading(true);
       const response = await fetch('/api/images');
-      const result = await response.json();
       
+      const result = await response.json();
+      console.log('Response from /api/images:', result);
       if (result.success) {
         setImages(result.images);
       } else {
