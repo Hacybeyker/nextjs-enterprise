@@ -14,7 +14,7 @@ export default function Home() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border">
               <div className="relative aspect-square">
                 <Image
-                  src="https://minis3.cosorio.dev/nextjs-enterprise/1759290990171-superman.jpg"
+                  src="https://consoleminis3.cosorio.dev/nextjs-enterprise/1759290990171-superman.jpg"
                   alt="Imagen de demostración - Superman"
                   fill
                   className="object-cover"
@@ -28,7 +28,7 @@ export default function Home() {
                   Esta imagen se carga directamente desde tu servidor MinIO configurado con Dokploy
                 </p>
                 <div className="mt-3 text-xs text-gray-500 font-mono bg-gray-50 p-2 rounded">
-                  https://minis3.cosorio.dev/nextjs-enterprise/1759290990171-superman.jpg
+                  https://consoleminis3.cosorio.dev/nextjs-enterprise/1759290990171-superman.jpg
                 </div>
               </div>
             </div>

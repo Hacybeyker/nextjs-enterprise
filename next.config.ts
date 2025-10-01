@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'minis3.cosorio.dev',
+        hostname: 'consoleminis3.cosorio.dev',
         // No especificar puerto para HTTPS (usa 443 por defecto)
         pathname: '/nextjs-enterprise/**',
       },
