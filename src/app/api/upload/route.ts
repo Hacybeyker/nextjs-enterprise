@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { uploadFile } from '@/lib/minio';
 
 export async function POST(request: NextRequest) {
   try {
+    // Verificar que las variables de entorno estén disponibles
+    if (!process.env.MINIO_ENDPOINT || !process.env.MINIO_ACCESS_KEY) {
+      return NextResponse.json({ 
+        error: 'MinIO configuration not available' 
+      }, { status: 500 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
     
@@ -23,7 +29,8 @@ export async function POST(request: NextRequest) {
     const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
     const buffer = Buffer.from(await file.arrayBuffer());
     
-    // Subir archivo usando la función helper
+    // Importar dinámicamente y subir archivo
+    const { uploadFile } = await import('@/lib/minio');
     const result = await uploadFile(fileName, buffer, file.type);
 
     return NextResponse.json({ 

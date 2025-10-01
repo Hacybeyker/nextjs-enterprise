@@ -2,16 +2,16 @@ import { Client } from 'minio';
 
 // Configuración para Service Account - Puerto 9000 HTTP con path-style
 export const minioClient = new Client({
-  endPoint: process.env.MINIO_ENDPOINT!,
+  endPoint: process.env.MINIO_ENDPOINT || 'localhost',
   port: 9000, // Puerto API directo de MinIO
   useSSL: false, // Dokploy no tiene SSL en puerto 9000
-  accessKey: process.env.MINIO_ACCESS_KEY!,
-  secretKey: process.env.MINIO_SECRET_KEY!,
+  accessKey: process.env.MINIO_ACCESS_KEY || 'minioadmin',
+  secretKey: process.env.MINIO_SECRET_KEY || 'minioadmin',
   region: 'us-east-1',
   pathStyle: true, // IMPORTANTE: Usar path-style URLs
 });
 
-export const BUCKET_NAME = process.env.MINIO_BUCKET_NAME!;
+export const BUCKET_NAME = process.env.MINIO_BUCKET_NAME || 'default';
 
 // Función de debug para probar conectividad
 export async function testConnection() {
